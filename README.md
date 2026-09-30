@@ -53,8 +53,13 @@ docker run -d --name litekb --restart=unless-stopped \
 
 鉴权：设了 `KB_TOKEN` 后，所有 API 需带 `Authorization: Bearer <token>`（或 `?token=`）。
 
+## 启用鉴权（可选）
+`docker-compose.yml` 的 `KB_TOKEN` 与 WorkBuddy 技能里的 `litekb_config.json` 的 `token` 填**同一个强令牌**；两处都留空则关闭鉴权（仅家庭内网建议）。
+
 ## 与 WorkBuddy 联动
-`kb_client.py` 是客户端封装（`add()` / `search()` / `get()` / `delete()`）。把它和 `LITEKB_URL` / `LITEKB_TOKEN` 接进 WorkBuddy 的归档技能，即可实现「任务结束自动写入、需要时自动检索」的本地兜底知识库（ima 仍是云端主库）。
+`kb_client.py` 是客户端封装（`add()` / `search()` / `get()` / `delete()`），**优先读环境变量、其次读同目录 `litekb_config.json`**。已打包成 WorkBuddy 技能 `litekb`（位于 `~/.workbuddy/skills/litekb/`），实现「任务结束自动写入、开始前自动检索」的本地兜底库（ima 仍是云端主库）。
+
+📘 完整部署 + 调用步骤见 **`部署与调用指南.md`**。
 
 ## 备份
 直接备份 Unraid 共享 `kbdata/litekb/`（SQLite 文件 `kb.db` + `-wal`/`-shm`）。升级前停容器再拷。

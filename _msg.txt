@@ -1,0 +1,7 @@
+LiteKB: 轻量个人知识库（单文件 Python + SQLite FTS5，零依赖零构建，跑在 Unraid Docker）
+
+更新:
+- kb_client.py 改为零依赖标准库 urllib，并真正读取 litekb_config.json（修复 search 未 import urllib.parse 的崩溃 bug）
+- litekb_config.json 增加 token 字段（与 docker KB_TOKEN 一致即可启用鉴权）
+- 新增 部署与调用指南.md：Unraid 部署 + WorkBuddy 自动归档/检索本地兜底 + 公司外网 lucky 反代
+- README 增加启用鉴权与指南链接

@@ -14,13 +14,13 @@ LiteKB 是跑在 Unraid 上的单文件轻量知识库（kb.py，纯 Python 标�
 - 用户明确说"存本地知识库""查本地库""归档到 LiteKB"。
 
 ## 配置文件
-`litekb_config.json`（与本 SKILL.md 同目录）：
+`litekb_config.json`（与本 SKILL.md 同目录），**客户端会自动读取本文件**：
 ```json
 { "url": "http://192.168.5.x:6808", "token": "" }
 ```
-- `url`：LiteKB 服务地址（末尾别带斜杠）。
-- `token`：若服务端设了 `KB_TOKEN`，填这里；留空则服务端无鉴权。
-- 也可用环境变量 `LITEKB_URL` / `LITEKB_TOKEN` 覆盖（优先级高于配置文件）。
+- `url`：LiteKB 服务地址（末尾别带斜杠）。**必须改成真实地址**，否则客户端会报错提示仍是占位符。
+- `token`：若服务端 `docker-compose.yml` 里设了 `KB_TOKEN`，把**同一个强令牌**填这里；留空则服务端无鉴权。
+- 配置优先级：环境变量 `LITEKB_URL` / `LITEKB_TOKEN` > 本配置文件 > 内置默认（占位符地址）。
 
 ## 客户端
 `kb_client.py`（同目录）提供：
