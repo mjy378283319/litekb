@@ -1,0 +1,20 @@
+# LiteKB - 轻量知识库 (Unraid Docker Compose)
+# 用法：把 kb.py 与本文件放同一目录(如 /mnt/user/appdata/litekb/)，执行：
+#   docker compose up -d
+# 数据落在 /mnt/user/kbdata/litekb (SQLite)，容器删数据不丢。
+# 访问：http://<Unraid-IP>:6808
+services:
+  litekb:
+    image: python:3.12-alpine
+    container_name: litekb
+    command: python /app/kb.py
+    ports:
+      - "6808:6808"
+    environment:
+      KB_TOKEN: "你的强令牌"   # 留空=无鉴权；设置后 API 需 Bearer
+      KB_DATA: /data
+      TZ: Asia/Shanghai
+    volumes:
+      - /mnt/user/kbdata/litekb:/data
+      - ./kb.py:/app/kb.py:ro
+    restart: unless-stopped
