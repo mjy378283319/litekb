@@ -1,6 +1,0 @@
-LiteKB: 轻量个人知识库（单文件 Python + SQLite FTS5，零依赖零构建，跑在 Unraid Docker）
-
-- kb.py 单文件服务：FTS5 全文检索 / REST API / 深色 Web UI
-- docker-compose.yml：python:3.12-alpine 挂载即跑，零 pip 零 Dockerfile
-- kb_client.py：WorkBuddy 客户端（add/search/get/delete）
-- skill/：WorkBuddy 自动归档 + 任务前检索技能（ima 之外的本地兜底）
